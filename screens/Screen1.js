@@ -1,12 +1,12 @@
 import * as React from "react";
 import {
+  View,
   StatusBar,
   StyleSheet,
   Pressable,
   Text,
-  View,
-  Image,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Color, FontFamily, Border, FontSize } from "../GlobalStyles";
@@ -17,23 +17,34 @@ const Screen1 = () => {
   return (
     <View style={styles.view}>
       <StatusBar barStyle="default" />
-      <TouchableOpacity
-        style={[styles.skipParent, styles.groupIconLayout]}
-        activeOpacity={0.2}
+      <Pressable
+        style={[styles.skipParent, styles.wrapperLayout]}
         onPress={() => navigation.navigate("Screen1")}
       >
-        <Text style={[styles.skip, styles.skipClr]}>Skip</Text>
+        <TouchableOpacity
+          style={styles.skip}
+          activeOpacity={0.2}
+          onPress={() => navigation.navigate("SingIn")}
+        >
+          <Text style={[styles.skip1, styles.skip1Clr]}>Skip</Text>
+        </TouchableOpacity>
         <View style={styles.rectangleParent}>
           <View style={[styles.groupChild, styles.groupLayout]} />
           <View style={styles.groupItem} />
           <View style={[styles.groupInner, styles.groupLayout]} />
         </View>
-        <Image
-          style={[styles.groupIcon, styles.groupIconLayout]}
-          resizeMode="cover"
-          source={require("../assets/group-1408.png")}
-        />
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.wrapper, styles.wrapperLayout]}
+          activeOpacity={0.2}
+          onPress={() => navigation.navigate("Screen1")}
+        >
+          <Image
+            style={styles.icon}
+            resizeMode="cover"
+            source={require("../assets/group-1408.png")}
+          />
+        </TouchableOpacity>
+      </Pressable>
       <View style={styles.selectLocationParent}>
         <Text style={[styles.selectLocation, styles.getEasyAccessFlexBox]}>
           Select Location
@@ -42,10 +53,10 @@ const Screen1 = () => {
           style={[
             styles.getEasyAccess,
             styles.getEasyAccessFlexBox,
-            styles.skipClr,
+            styles.skip1Clr,
           ]}
         >
-          Within the University of Quaid-i-Azam University Islamabad, get easy access to a wide range of locations with ease.
+          Get easy access to wide range of location with ease.
         </Text>
       </View>
       <Image
@@ -58,14 +69,13 @@ const Screen1 = () => {
 };
 
 const styles = StyleSheet.create({
-  groupIconLayout: {
+  wrapperLayout: {
     height: 26,
     position: "absolute",
   },
-  skipClr: {
+  skip1Clr: {
     color: Color.gray_100,
     fontFamily: FontFamily.poppinsRegular,
-    left: 0,
   },
   groupLayout: {
     opacity: 0.4,
@@ -80,10 +90,13 @@ const styles = StyleSheet.create({
     textAlign: "center",
     position: "absolute",
   },
-  skip: {
-    top: 1,
+  skip1: {
     fontSize: FontSize.size_mini,
     textAlign: "left",
+  },
+  skip: {
+    top: 1,
+    left: 0,
     position: "absolute",
   },
   groupChild: {
@@ -108,7 +121,11 @@ const styles = StyleSheet.create({
     height: 8,
     position: "absolute",
   },
-  groupIcon: {
+  icon: {
+    height: "100%",
+    width: "100%",
+  },
+  wrapper: {
     left: 218,
     width: 50,
     top: 0,
@@ -130,6 +147,7 @@ const styles = StyleSheet.create({
     top: 65,
     fontSize: FontSize.size_base,
     width: 243,
+    left: 0,
   },
   selectLocationParent: {
     top: 470,
@@ -153,9 +171,9 @@ const styles = StyleSheet.create({
   view: {
     backgroundColor: Color.white,
     flex: 1,
-    width: "100%",
     height: 812,
     overflow: "hidden",
+    width: "100%",
   },
 });
 

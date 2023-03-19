@@ -1,8 +1,19 @@
 import * as React from "react";
-import { StatusBar, StyleSheet, Image, Text, View } from "react-native";
+import {
+  StatusBar,
+  StyleSheet,
+  Image,
+  Text,
+  View,
+  Pressable,
+  TouchableOpacity,
+} from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { Color, FontFamily, Border, FontSize } from "../GlobalStyles";
 
 const Screen3 = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.view}>
       <StatusBar barStyle="default" />
@@ -12,37 +23,52 @@ const Screen3 = () => {
         source={require("../assets/group-1419.png")}
       />
       <View style={styles.enjoyYourRideParent}>
-        <Text style={styles.enjoyYourRide}>Enjoy your Ride</Text>
-        <Text style={[styles.bookYourCab, styles.skipPosition]}>
+        <Text style={[styles.enjoyYourRide, styles.yourFlexBox]}>
+          Enjoy your Ride
+        </Text>
+        <Text style={[styles.bookYourCab, styles.skip1Clr, styles.yourFlexBox]}>
           Book your cab and enjoy always available and safe ride with loved
           ones.
         </Text>
       </View>
-      <View style={[styles.skipParent, styles.groupIconLayout]}>
-        <Text style={[styles.skip, styles.skipPosition]}>Skip</Text>
+      <View style={[styles.skipParent, styles.wrapperLayout]}>
+        <Pressable
+          style={styles.skip}
+          onPress={() => navigation.navigate("SingIn")}
+        >
+          <Text style={[styles.skip1, styles.skip1Clr]}>Skip</Text>
+        </Pressable>
         <View style={styles.rectangleParent}>
           <View style={[styles.groupChild, styles.groupLayout]} />
           <View style={styles.groupItem} />
           <View style={[styles.groupInner, styles.groupLayout]} />
         </View>
-        <Image
-          style={[styles.groupIcon, styles.groupIconLayout]}
-          resizeMode="cover"
-          source={require("../assets/group-1408.png")}
-        />
+        <TouchableOpacity
+          style={[styles.wrapper, styles.wrapperLayout]}
+          activeOpacity={0.2}
+          onPress={() => navigation.navigate("SingIn")}
+        >
+          <Image
+            style={styles.icon}
+            resizeMode="cover"
+            source={require("../assets/group-1408.png")}
+          />
+        </TouchableOpacity>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  skipPosition: {
-    color: Color.gray_100,
-    fontFamily: FontFamily.poppinsRegular,
-    left: 0,
+  yourFlexBox: {
+    textAlign: "center",
     position: "absolute",
   },
-  groupIconLayout: {
+  skip1Clr: {
+    color: Color.gray_100,
+    fontFamily: FontFamily.poppinsRegular,
+  },
+  wrapperLayout: {
     height: 26,
     position: "absolute",
   },
@@ -73,15 +99,13 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     fontFamily: FontFamily.poppinsSemibold,
     color: Color.gray_200,
-    textAlign: "center",
     top: 0,
-    position: "absolute",
   },
   bookYourCab: {
     top: 65,
     fontSize: FontSize.size_base,
-    textAlign: "center",
     width: 324,
+    left: 0,
   },
   enjoyYourRideParent: {
     top: 470,
@@ -90,10 +114,14 @@ const styles = StyleSheet.create({
     width: 324,
     position: "absolute",
   },
-  skip: {
-    top: 1,
+  skip1: {
     fontSize: FontSize.size_mini,
     textAlign: "left",
+  },
+  skip: {
+    top: 1,
+    left: 0,
+    position: "absolute",
   },
   groupChild: {
     left: 0,
@@ -117,7 +145,11 @@ const styles = StyleSheet.create({
     height: 8,
     position: "absolute",
   },
-  groupIcon: {
+  icon: {
+    height: "100%",
+    width: "100%",
+  },
+  wrapper: {
     left: 218,
     width: 50,
     top: 0,
@@ -130,9 +162,9 @@ const styles = StyleSheet.create({
   view: {
     backgroundColor: Color.white,
     flex: 1,
-    width: "100%",
     height: 812,
     overflow: "hidden",
+    width: "100%",
   },
 });
 

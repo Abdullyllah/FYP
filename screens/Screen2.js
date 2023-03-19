@@ -23,40 +23,62 @@ const Screen2 = () => {
         source={require("../assets/group-1418.png")}
       />
       <View style={styles.chooseYourRideParent}>
-        <Text style={styles.chooseYourRide}>Choose your Ride</Text>
-        <Text style={[styles.selectYourComfortable, styles.skipPosition]}>
+        <Text style={[styles.chooseYourRide, styles.yourFlexBox]}>
+          Choose your Ride
+        </Text>
+        <Text
+          style={[
+            styles.selectYourComfortable,
+            styles.skip1Clr,
+            styles.yourFlexBox,
+          ]}
+        >
           Select your comfortable and customized ride with variety of choices.
         </Text>
       </View>
       <TouchableOpacity
-        style={[styles.skipParent, styles.groupIconLayout]}
+        style={[styles.skipParent, styles.wrapperLayout]}
         activeOpacity={0.2}
         onPress={() => navigation.navigate("Screen2")}
       >
-        <Text style={[styles.skip, styles.skipPosition]}>Skip</Text>
+        <TouchableOpacity
+          style={styles.skip}
+          activeOpacity={0.2}
+          onPress={() => navigation.navigate("SingIn")}
+        >
+          <Text style={[styles.skip1, styles.skip1Clr]}>Skip</Text>
+        </TouchableOpacity>
         <View style={styles.rectangleParent}>
           <View style={[styles.groupChild, styles.groupLayout]} />
           <View style={styles.groupItem} />
           <View style={[styles.groupInner, styles.groupLayout]} />
         </View>
-        <Image
-          style={[styles.groupIcon, styles.groupIconLayout]}
-          resizeMode="cover"
-          source={require("../assets/group-1408.png")}
-        />
+        <TouchableOpacity
+          style={[styles.wrapper, styles.wrapperLayout]}
+          activeOpacity={0.2}
+          onPress={() => navigation.navigate("Screen2")}
+        >
+          <Image
+            style={styles.icon}
+            resizeMode="cover"
+            source={require("../assets/group-1408.png")}
+          />
+        </TouchableOpacity>
       </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  skipPosition: {
-    color: Color.gray_100,
-    fontFamily: FontFamily.poppinsRegular,
-    left: 0,
+  yourFlexBox: {
+    textAlign: "center",
     position: "absolute",
   },
-  groupIconLayout: {
+  skip1Clr: {
+    color: Color.gray_100,
+    fontFamily: FontFamily.poppinsRegular,
+  },
+  wrapperLayout: {
     height: 26,
     position: "absolute",
   },
@@ -87,15 +109,13 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     fontFamily: FontFamily.poppinsSemibold,
     color: Color.gray_200,
-    textAlign: "center",
     top: 0,
-    position: "absolute",
   },
   selectYourComfortable: {
     top: 65,
     fontSize: FontSize.size_base,
-    textAlign: "center",
     width: 316,
+    left: 0,
   },
   chooseYourRideParent: {
     top: 470,
@@ -104,10 +124,14 @@ const styles = StyleSheet.create({
     width: 316,
     position: "absolute",
   },
-  skip: {
-    top: 1,
+  skip1: {
     fontSize: FontSize.size_mini,
     textAlign: "left",
+  },
+  skip: {
+    top: 1,
+    left: 0,
+    position: "absolute",
   },
   groupChild: {
     left: 0,
@@ -131,7 +155,11 @@ const styles = StyleSheet.create({
     height: 8,
     position: "absolute",
   },
-  groupIcon: {
+  icon: {
+    height: "100%",
+    width: "100%",
+  },
+  wrapper: {
     left: 218,
     width: 50,
     top: 0,
@@ -144,9 +172,9 @@ const styles = StyleSheet.create({
   view: {
     backgroundColor: Color.white,
     flex: 1,
-    width: "100%",
     height: 812,
     overflow: "hidden",
+    width: "100%",
   },
 });
 
